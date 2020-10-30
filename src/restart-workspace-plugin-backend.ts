@@ -12,7 +12,10 @@ export function start(context: theia.PluginContext) {
     };
     context.subscriptions.push(theia.commands.registerCommand(informationMessageTestCommand, async (...args: any[]) => {
         theia.window.showInformationMessage('Restarting workspace....');
-        const result = await (che.workspace as any).restartWorkspace();
+        const options = {
+            prompt: false,
+        }
+        const result = await (che.workspace as any).restartWorkspace(options);
         theia.window.showInformationMessage(`result is ${result}`);
     }));
 
@@ -22,7 +25,12 @@ export function start(context: theia.PluginContext) {
     };
     context.subscriptions.push(theia.commands.registerCommand(informationMessageTestWithPromptCommand, async (...args: any[]) => {
         theia.window.showInformationMessage('Restarting workspace....');
-        const result = await (che.workspace as any).restartWorkspace(true);
+        const options = {
+            prompt: true,
+            promptMsg: 'this is a custom message prompt. Restart workspace ?'
+        }
+
+        const result = await (che.workspace as any).restartWorkspace(options);
         theia.window.showInformationMessage(`result is ${result}`);
     }));
 
