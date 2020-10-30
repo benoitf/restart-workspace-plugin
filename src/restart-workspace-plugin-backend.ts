@@ -27,7 +27,7 @@ export function start(context: theia.PluginContext) {
         theia.window.showInformationMessage('Restarting workspace....');
         const options = {
             prompt: true,
-            promptMsg: 'this is a custom message prompt. Restart workspace ?'
+            promptMessage: 'this is a custom message prompt. Restart workspace ?'
         }
 
         const result = await (che.workspace as any).restartWorkspace(options);
