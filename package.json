@@ -1,0 +1,39 @@
+{
+      "name": "restart-workspace-plugin",
+      "publisher": "theia",
+      "keywords": [
+        "theia-plugin"
+      ],
+      "version": "0.0.1",
+      "license": "none",
+      
+      "files": [
+        "src"
+      ],
+      "activationEvents": ["*"],
+      "devDependencies": {
+        "@eclipse-che/plugin": "latest",
+        "@theia/plugin": "next",
+        "@theia/plugin-packager": "latest",
+        "rimraf": "2.6.2",
+        "typescript-formatter": "7.2.2",
+        "typescript": "^4"
+      },
+      "scripts": {
+        "prepare": "yarn run clean && yarn run build",
+        "clean": "rimraf lib",
+        "format-code": "tsfmt -r",
+        "watch": "tsc -watch",
+        "compile": "tsc", 
+        "build": "yarn run format-code && yarn run compile && theia-plugin pack"
+      },
+      "engines": {
+        "theiaPlugin": "next"
+      },
+      "theiaPlugin": {
+          
+          
+            "backend": "lib/restart-workspace-plugin-backend.js"
+          
+      }
+}
